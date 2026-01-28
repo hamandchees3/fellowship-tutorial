@@ -157,6 +157,49 @@
             color: #666;
             font-size: 0.9em;
         }
+
+        /* Platform Toggle */
+        .platform-toggle {
+            display: flex;
+            gap: 0;
+            margin-bottom: 24px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #1a1a1a;
+            width: fit-content;
+        }
+
+        .platform-btn {
+            padding: 10px 24px;
+            border: none;
+            background-color: #FAF8F5;
+            color: #1a1a1a;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .platform-btn:first-child {
+            border-right: 2px solid #1a1a1a;
+        }
+
+        .platform-btn.active {
+            background-color: #1a1a1a;
+            color: #FAF8F5;
+        }
+
+        .platform-btn:hover:not(.active) {
+            background-color: #f0eeeb;
+        }
+
+        .platform-content {
+            display: none;
+        }
+
+        .platform-content.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -178,45 +221,95 @@
         <hr class="divider">
 
         <h2>Installation Guide</h2>
-        <p>Follow these steps to install Claude Code on your Mac. If you get stuck, don't worry—that's normal! Just describe the error to Claude once you're set up.</p>
+        <p>Select your operating system, then follow the steps below. If you get stuck, don't worry—that's normal! Just describe the error to Claude once you're set up.</p>
 
-        <div class="step">
-            <div class="step-number">1</div>
-            <div class="step-content">
-                <h3>Open Terminal</h3>
-                <p>Press <strong>Command + Space</strong> to open Spotlight, type <strong>Terminal</strong>, and press Enter.</p>
-                <div class="visual-placeholder">
-                    Your screen will show a window with a blinking cursor. This is the Terminal—where you'll type commands.
+        <div class="platform-toggle">
+            <button class="platform-btn active" onclick="switchPlatform('mac')">Mac</button>
+            <button class="platform-btn" onclick="switchPlatform('windows')">Windows</button>
+        </div>
+
+        <!-- Mac Instructions -->
+        <div id="mac-content" class="platform-content active">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Open Terminal</h3>
+                    <p>Press <strong>Command + Space</strong> to open Spotlight, type <strong>Terminal</strong>, and press Enter.</p>
+                    <div class="visual-placeholder">
+                        Your screen will show a window with a blinking cursor. This is the Terminal—where you'll type commands.
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="step">
-            <div class="step-number">2</div>
-            <div class="step-content">
-                <h3>Install Claude Code</h3>
-                <p>Copy and paste this command into Terminal, then press Enter:</p>
-                <div class="code-block">curl -fsSL https://claude.ai/install.sh | bash</div>
-                <p>Wait for it to finish. You'll see some text scroll by—that's normal. When you see your cursor blinking on a new line, it's done.</p>
-                <p>After installation, <strong>close Terminal completely</strong> (Command + Q) and reopen it so the changes take effect.</p>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Install Claude Code</h3>
+                    <p>Copy and paste this command into Terminal, then press Enter:</p>
+                    <div class="code-block">curl -fsSL https://claude.ai/install.sh | bash</div>
+                    <p>Wait for it to finish. You'll see some text scroll by—that's normal. When you see your cursor blinking on a new line, it's done.</p>
+                    <p>After installation, <strong>close Terminal completely</strong> (Command + Q) and reopen it so the changes take effect.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Start Claude Code</h3>
+                    <p>Navigate to a folder where you want to work (or create a new one), then type:</p>
+                    <div class="code-block">claude</div>
+                    <p>The first time you run this, it will ask you to log in with your Anthropic account. Follow the prompts in your browser.</p>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <strong>Tip: Creating a project folder</strong>
+                If you want to create a new folder for your project, use these commands:
+                <div class="code-block">mkdir my-project<br>cd my-project<br>claude</div>
+                This creates a folder called "my-project," moves into it, and starts Claude.
             </div>
         </div>
 
-        <div class="step">
-            <div class="step-number">3</div>
-            <div class="step-content">
-                <h3>Start Claude Code</h3>
-                <p>Navigate to a folder where you want to work (or create a new one), then type:</p>
-                <div class="code-block">claude</div>
-                <p>The first time you run this, it will ask you to log in with your Anthropic account. Follow the prompts in your browser.</p>
+        <!-- Windows Instructions -->
+        <div id="windows-content" class="platform-content">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Open PowerShell</h3>
+                    <p>Press <strong>Windows + X</strong>, then click <strong>Terminal</strong> or <strong>Windows PowerShell</strong>. Alternatively, press <strong>Windows key</strong>, type <strong>PowerShell</strong>, and press Enter.</p>
+                    <div class="visual-placeholder">
+                        Your screen will show a window with a blinking cursor. This is PowerShell—where you'll type commands.
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="tip-box">
-            <strong>Tip: Creating a project folder</strong>
-            If you want to create a new folder for your project, use these commands:
-            <div class="code-block">mkdir my-project<br>cd my-project<br>claude</div>
-            This creates a folder called "my-project," moves into it, and starts Claude.
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Install Claude Code</h3>
+                    <p>Copy and paste this command into PowerShell, then press Enter:</p>
+                    <div class="code-block">irm https://claude.ai/install.ps1 | iex</div>
+                    <p>Wait for it to finish. You'll see some text scroll by—that's normal. When you see your cursor blinking on a new line, it's done.</p>
+                    <p>After installation, <strong>close PowerShell completely</strong> and reopen it so the changes take effect.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Start Claude Code</h3>
+                    <p>Navigate to a folder where you want to work (or create a new one), then type:</p>
+                    <div class="code-block">claude</div>
+                    <p>The first time you run this, it will ask you to log in with your Anthropic account. Follow the prompts in your browser.</p>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <strong>Tip: Creating a project folder</strong>
+                If you want to create a new folder for your project, use these commands:
+                <div class="code-block">mkdir my-project<br>cd my-project<br>claude</div>
+                This creates a folder called "my-project," moves into it, and starts Claude.
+            </div>
         </div>
 
         <hr class="divider">
@@ -224,7 +317,7 @@
         <h2>Your First Command</h2>
         <p>Once Claude Code is running, you'll see a prompt where you can type. Try something simple:</p>
         <div class="code-block">Create a file called hello.txt that says "Hello from Claude Code!"</div>
-        <p>Claude will create the file for you. You can then open Finder and navigate to your project folder to see it.</p>
+        <p>Claude will create the file for you. You can then open Finder (Mac) or File Explorer (Windows) and navigate to your project folder to see it.</p>
 
         <p>Here are a few more things to try:</p>
         <ul>
@@ -292,5 +385,21 @@
             <p>Created for the Conservative AI Policy Fellowship</p>
         </div>
     </div>
+
+    <script>
+        function switchPlatform(platform) {
+            // Update buttons
+            document.querySelectorAll('.platform-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update content
+            document.querySelectorAll('.platform-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(platform + '-content').classList.add('active');
+        }
+    </script>
 </body>
 </html>
