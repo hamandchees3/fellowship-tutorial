@@ -194,34 +194,16 @@
         <div class="step">
             <div class="step-number">2</div>
             <div class="step-content">
-                <h3>Check if Node.js is installed</h3>
+                <h3>Install Claude Code</h3>
                 <p>Copy and paste this command into Terminal, then press Enter:</p>
-                <div class="code-block">node --version</div>
-                <p>If you see a version number (like <span class="code-inline">v20.10.0</span>), skip to Step 4. If you see "command not found," continue to Step 3.</p>
+                <div class="code-block">curl -fsSL https://claude.ai/install.sh | bash</div>
+                <p>Wait for it to finish. You'll see some text scroll by—that's normal. When you see your cursor blinking on a new line, it's done.</p>
+                <p>After installation, <strong>close Terminal completely</strong> (Command + Q) and reopen it so the changes take effect.</p>
             </div>
         </div>
 
         <div class="step">
             <div class="step-number">3</div>
-            <div class="step-content">
-                <h3>Install Node.js (if needed)</h3>
-                <p>Go to <a href="https://nodejs.org" target="_blank">nodejs.org</a> and click the big green button that says <strong>LTS</strong> (Long Term Support). Download and run the installer, clicking "Continue" through each step.</p>
-                <p>After installation, <strong>close Terminal completely</strong> (Command + Q) and reopen it. Then run <span class="code-inline">node --version</span> again to confirm it worked.</p>
-            </div>
-        </div>
-
-        <div class="step">
-            <div class="step-number">4</div>
-            <div class="step-content">
-                <h3>Install Claude Code</h3>
-                <p>Copy and paste this command into Terminal:</p>
-                <div class="code-block">npm install -g @anthropic-ai/claude-code</div>
-                <p>Wait for it to finish. You'll see some text scroll by—that's normal. When you see your cursor blinking on a new line, it's done.</p>
-            </div>
-        </div>
-
-        <div class="step">
-            <div class="step-number">5</div>
             <div class="step-content">
                 <h3>Start Claude Code</h3>
                 <p>Navigate to a folder where you want to work (or create a new one), then type:</p>
