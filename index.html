@@ -125,14 +125,156 @@
             margin-bottom: 4px;
         }
 
-        .visual-placeholder {
-            background-color: #e8e6e3;
+        /* Mac Terminal Window */
+        .terminal-window {
             border-radius: 8px;
-            padding: 40px 20px;
-            text-align: center;
-            color: #666;
+            overflow: hidden;
             margin: 12px 0;
-            border: 2px dashed #ccc;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .terminal-header {
+            background: linear-gradient(180deg, #e8e6e3 0%, #d6d2cd 100%);
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terminal-buttons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .terminal-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-btn.close { background-color: #ff5f57; }
+        .terminal-btn.minimize { background-color: #ffbd2e; }
+        .terminal-btn.maximize { background-color: #28c840; }
+
+        .terminal-title {
+            flex: 1;
+            text-align: center;
+            font-size: 13px;
+            color: #4a4a4a;
+            font-weight: 500;
+        }
+
+        .terminal-body {
+            background-color: #1e1e1e;
+            padding: 16px;
+            font-family: 'SF Mono', 'Monaco', 'Menlo', monospace;
+            font-size: 13px;
+            color: #f0f0f0;
+            min-height: 80px;
+        }
+
+        .terminal-prompt {
+            color: #4ec9b0;
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background-color: #f0f0f0;
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Windows PowerShell Window */
+        .powershell-window {
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 12px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border: 1px solid #2d2d2d;
+        }
+
+        .powershell-header {
+            background-color: #1e1e1e;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .powershell-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #cccccc;
+        }
+
+        .powershell-icon {
+            width: 16px;
+            height: 16px;
+            background-color: #012456;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .powershell-controls {
+            display: flex;
+            gap: 0;
+        }
+
+        .powershell-ctrl {
+            width: 46px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 10px;
+        }
+
+        .powershell-ctrl:hover {
+            background-color: #333;
+        }
+
+        .powershell-ctrl.close:hover {
+            background-color: #e81123;
+            color: #fff;
+        }
+
+        .powershell-body {
+            background-color: #012456;
+            padding: 16px;
+            font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            color: #cccccc;
+            min-height: 80px;
+        }
+
+        .powershell-prompt {
+            color: #ffff00;
+        }
+
+        .powershell-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background-color: #cccccc;
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+            margin-left: 2px;
         }
 
         .divider {
@@ -235,9 +377,21 @@
                 <div class="step-content">
                     <h3>Open Terminal</h3>
                     <p>Press <strong>Command + Space</strong> to open Spotlight, type <strong>Terminal</strong>, and press Enter.</p>
-                    <div class="visual-placeholder">
-                        Your screen will show a window with a blinking cursor. This is the Terminal—where you'll type commands.
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <div class="terminal-btn close"></div>
+                                <div class="terminal-btn minimize"></div>
+                                <div class="terminal-btn maximize"></div>
+                            </div>
+                            <div class="terminal-title">Terminal</div>
+                            <div style="width: 54px;"></div>
+                        </div>
+                        <div class="terminal-body">
+                            <span class="terminal-prompt">user@mac ~ %</span> <span class="terminal-cursor"></span>
+                        </div>
                     </div>
+                    <p style="margin-top: 12px; font-size: 0.95em; color: #666;">This is the Terminal—where you'll type commands.</p>
                 </div>
             </div>
 
@@ -277,9 +431,23 @@
                 <div class="step-content">
                     <h3>Open PowerShell</h3>
                     <p>Press <strong>Windows + X</strong>, then click <strong>Terminal</strong> or <strong>Windows PowerShell</strong>. Alternatively, press <strong>Windows key</strong>, type <strong>PowerShell</strong>, and press Enter.</p>
-                    <div class="visual-placeholder">
-                        Your screen will show a window with a blinking cursor. This is PowerShell—where you'll type commands.
+                    <div class="powershell-window">
+                        <div class="powershell-header">
+                            <div class="powershell-title">
+                                <div class="powershell-icon">PS</div>
+                                Windows PowerShell
+                            </div>
+                            <div class="powershell-controls">
+                                <div class="powershell-ctrl">─</div>
+                                <div class="powershell-ctrl">□</div>
+                                <div class="powershell-ctrl close">✕</div>
+                            </div>
+                        </div>
+                        <div class="powershell-body">
+                            <span class="powershell-prompt">PS C:\Users\You&gt;</span> <span class="powershell-cursor"></span>
+                        </div>
                     </div>
+                    <p style="margin-top: 12px; font-size: 0.95em; color: #666;">This is PowerShell—where you'll type commands.</p>
                 </div>
             </div>
 
